@@ -1,0 +1,15 @@
+.login {
+    position: fixed;
+    width: 25vw;
+    height: 40vh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 5%;
+    min-height: 100px;
+}
+
+.inputField {
+    margin: 10px;
+    padding-bottom: 10px;
+}
