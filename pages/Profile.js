@@ -81,7 +81,6 @@ function updateAbout(uid, edit) {
 
 const ProfilePage = () => {
     const navigate = useNavigate();
-    const navItems = ['Search', 'Profile', 'Chat'];
     const navis = [() => {navigate('/search')}, () => { localStorage.setItem("uidContext", uid); navigate('/profile'); }, () => {navigate('/main')}]
     const classes = useStyles();
     const [username, setUsername] = useState('');
@@ -134,7 +133,7 @@ const ProfilePage = () => {
 
     return (
         <div style={{flexDirection: 'column'}}>
-            <Header navItems={navItems} classes={classes} title={"Chat Room"} selected={"Profile"} navis={navis} login={true}></Header>
+            <Header isLogin={true} classes={classes} title={"Chat Room"} selected={"Profile"} navis={navis} login={true}></Header>
             <Dialog open={isOpen} onClose={() => { setIsOpen(false); }} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">Edit</DialogTitle>
                 <DialogContent>

@@ -47,7 +47,6 @@ const LoginPage = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const classes = useStyles();
-    const navItems = ['Sign In', 'Sign Up'];
     const [email, setEmail] = useState("");
     const [signinFailed, setSigninFailed] = useState(false);
     const [password, setPassword] = useState("");
@@ -56,7 +55,7 @@ const LoginPage = () => {
     window.history.replaceState({}, document.title);
     return (
         <div>
-            <Header navItems={navItems} classes={classes} title={"Chat Room"} selected={"Sign In"} navis={navis} login={false}></Header>
+            <Header isLogin={false} classes={classes} title={"Chat Room"} selected={"Sign In"} navis={navis} login={false}></Header>
             <div className="login">
                 <Typography variant="h6" style={{marginLeft:"10px"}}>
                         {"Email"}

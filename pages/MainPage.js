@@ -39,7 +39,6 @@ const MainPage = () => {
     const [groupInfo, setGroupInfo] = useState([]);
     const [uid, setUid] = useState("");
     const navigate = useNavigate();
-    const navItems = ['Search', 'Profile', 'Chat'];
     const navis = [() => { navigate('/search'); }, () => { localStorage.setItem("uidContext", uid); navigate('/profile'); }, () => {}]
     const classes = useStyles();
     useEffect(()=>{
@@ -80,7 +79,7 @@ const MainPage = () => {
 
     return (
         <div style={{flexDirection: 'column'}}>
-            <Header navItems={navItems} classes={classes} title={"Chat Room"} selected={"Chat"} navis={navis} login={true}></Header>
+            <Header isLogin={true} classes={classes} title={"Chat Room"} selected={"Chat"} navis={navis} login={true}></Header>
             <Grid container direction="row" style={{paddingTop: 60, height:"calc(100vh - 74px)"}}>
                 <Grid item style={{width:"35%"}}>
                     <Groups groupInfo={groupInfo} 
@@ -91,7 +90,7 @@ const MainPage = () => {
                     ></Groups>
                 </Grid>
                 <Grid item style={{backgroundColor:"white", width:"65%"}}>
-                    {groupInfo !== [] ? <Chat groupInfo={groupInfo} 
+                    {groupInfo ? <Chat groupInfo={groupInfo} 
                                               setGroupsList={setGroupsList}
                                               groupsList={groupsList}
                                         ></Chat> : <div></div>}

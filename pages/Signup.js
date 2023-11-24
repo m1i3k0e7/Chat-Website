@@ -71,7 +71,6 @@ async function firebaseSignup(username, email, password, checkPassword, setAlert
 const SignupPage = () => {
     const navigate = useNavigate();
     const classes = useStyles();
-    const navItems = ['Sign In', 'Sign Up'];
     const [alert, setAlert] = useState(false);
     const [alertMessage, setAlertMessage] = useState("");
     const [username, setUsername] = useState("");
@@ -82,7 +81,7 @@ const SignupPage = () => {
 
     return (
         <div>
-            <Header navItems={navItems} classes={classes} title={"Chat Room"} selected={"Sign Up"} navis={navis} login={false}></Header>
+            <Header isLogin={false} classes={classes} title={"Chat Room"} selected={"Sign Up"} navis={navis} login={false}></Header>
             <div className="login" style={{top: "40%"}}>
                 <Typography variant="h6" style={{marginLeft:"10px"}}>
                         {"Username"}

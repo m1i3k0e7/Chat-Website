@@ -73,7 +73,6 @@ async function searchGroupByName(searchVal, setSearchGroups, setSearchError) {
 
 const SearchPage = () => {
     const navigate = useNavigate();
-    const navItems = ['Search', 'Profile', 'Chat'];
     const navis = [() => {}, () => { localStorage.setItem("uidContext", uid); navigate('/profile'); }, () => {navigate('/main')}]
     const classes = useStyles();
     const [searchGroups, setSearchGroups] = useState([]);
@@ -96,7 +95,7 @@ const SearchPage = () => {
     
     return (
         <div style={{flexDirection: 'column'}}>
-            <Header navItems={navItems} classes={classes} title={"Chat Room"} selected={"Search"} navis={navis} login={true}></Header>
+            <Header isLogin={true} classes={classes} title={"Chat Room"} selected={"Explore"} navis={navis} login={true}></Header>
             <div className={classes.searchField}>
                 <TextField label="Search Group" 
                            variant="outlined" 

@@ -2,11 +2,13 @@ import { withStyles, makeStyles, Box, Toolbar, AppBar, Button, Divider, TextFiel
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import SearchIcon from '@material-ui/icons/Search';
 import ChatIcon from '@material-ui/icons/Chat';
+import PublicIcon from '@material-ui/icons/Public';
 
-const Header = ({navItems, classes, title, selected, navis, login}) => {
-    const icons = [<SearchIcon fontSize="small" style={{paddingRight: '10px'}}/>, 
+const Header = ({isLogin, classes, title, selected, navis, login}) => {
+    const icons = [<PublicIcon fontSize="small" style={{paddingRight: '10px'}}/>, 
                    <AccountCircleIcon fontSize="small" style={{paddingRight: '10px'}}/>, 
                    <ChatIcon fontSize="small" style={{paddingRight: '10px'}}/>]
+    const navItems2 = isLogin ? ['Explore', 'Profile', 'Chat'] : ['Sign In', 'Sign Up'];
     return (
         <AppBar component="nav" color="white">
             <Toolbar>
@@ -19,7 +21,7 @@ const Header = ({navItems, classes, title, selected, navis, login}) => {
                     {title}
                 </Typography>
                 <Box sx={{ display: 'block' }}>
-                    {navItems.map((item, index) => (
+                    {navItems2.map((item, index) => (
                     <Button key={item} onClick={navis[index]} style={item == selected ? { 
                         color: '#fff',
                         backgroundColor: '#000',
