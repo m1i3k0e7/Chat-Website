@@ -5,7 +5,7 @@ An online chat website developed using React.js, Material UI, and Firebase ([Onl
 * Sign up Page
 ![image](https://github.com/m1i3k0e7/Chat-Website/assets/109360168/210623e2-ac0a-48b3-908f-a3a88f371e44)
 * Sign in Page
-![image](https://github.com/m1i3k0e7/Chat-Website/assets/109360168/d2f8b1f6-9438-4ebe-9b1b-d89774af47df)
+![image](https://github.com/m1i3k0e7/Chat-Website/assets/109360168/3f36204f-01c0-46ba-b21a-14fc2ee9a865)
 * Main Page
 ![image](https://github.com/m1i3k0e7/Chat-Website/assets/109360168/e02f882c-7660-4db3-942f-a6d54a46911a)
 * Profile Page
