@@ -9,6 +9,7 @@ import { set, ref, get, onValue, child } from "firebase/database";
 import { db, app } from "../firebase";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import SearchItem from "../component/SearchItem";
+import Post from "../component/Post";
 
 const useStyles = makeStyles((theme) => ({
     title: {
@@ -32,43 +33,28 @@ const useStyles = makeStyles((theme) => ({
         top: '20%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
+        zIndex: '2'
     },
     groupField: {
         height: '50px',
     }
   }));
 
-const ColorButton = withStyles((theme) => ({
-    root: {
-        color: theme.palette.getContrastText(grey[900]),
-        backgroundColor: grey[900],
-        '&:hover': {
-            backgroundColor: grey[700],
-        },
-    },
-}))(Button);
-
-async function searchGroupByName(searchVal, setSearchGroups, setSearchError) {
-    if(searchVal !== '') {
-        await get(child(ref(db), 'group/')).then((snapshot) => {
-            const data = snapshot.val();
-            var searchResult = [];
-            if(data) {
-                for(const [key, val] of Object.entries(data)) {
-                    const [name, id] = [val['groupName'], val['id']]
-                    if(searchVal !== '' && name.includes(searchVal)) {
-                        searchResult.push([name, id]);
-                    }     
-                }
-                setSearchGroups(searchResult);
-            } else {
-                setSearchGroups([]);
+async function searchGroupByName(searchVal) {
+    let result = await get(child(ref(db), 'group/')).then((snapshot) => {
+        const data = snapshot.val();
+        var searchResult = [];
+        if(data) {
+            for(const [key, val] of Object.entries(data)) {
+                const [name, id] = [val['groupName'], val['id']]
+                if(searchVal !== '' && name.includes(searchVal)) {
+                    searchResult.push([name, id]);
+                }     
             }
-        }).catch(error => {
-            console.log(error.message);
-            setSearchError(true);
-        });
-    }
+        }
+        return searchResult;
+    })
+    return result;
 }
 
 const SearchPage = () => {
@@ -76,7 +62,6 @@ const SearchPage = () => {
     const navis = [() => {}, () => { localStorage.setItem("uidContext", uid); navigate('/profile'); }, () => {navigate('/main')}]
     const classes = useStyles();
     const [searchGroups, setSearchGroups] = useState([]);
-    const [searchError, setSearchError] = useState(false);
     const [username, setUsername] = useState('');
     const [uid, setUid] = useState('');
 
@@ -100,11 +85,10 @@ const SearchPage = () => {
                 <TextField label="Search Group" 
                            variant="outlined" 
                            style={{width: "calc(100%)", backgroundColor: 'white'}}
-                           onChange={(e) => {
-                                searchGroupByName(e.target.value, setSearchGroups, setSearchError);
-                                if(e.target.value === '')
-                                    setSearchGroups([]);
-                           }}
+                           onChange={async (e) => {
+                                const searchResult = await searchGroupByName(e.target.value);
+                                setSearchGroups(searchResult);
+                            }}
                 />
                 
                 <div className={classes.groupField}>
@@ -115,6 +99,9 @@ const SearchPage = () => {
                     </Grid>
                 </div>
             </div>
+            <Post style={{zIndex: '1'}}>
+
+            </Post>
         </div>
     );
 };
