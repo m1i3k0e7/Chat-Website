@@ -1,5 +1,5 @@
 import { DialogContent, DialogActions, withStyles, makeStyles, Button,
-         Typography, Divider, TextareaAutosize, Dialog, DialogContentText, DialogTitle } from "@material-ui/core";
+         Typography, Divider, Dialog, DialogContentText, DialogTitle, TextField } from "@material-ui/core";
 import { grey } from '@material-ui/core/colors';
 import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
@@ -140,16 +140,18 @@ const ProfilePage = () => {
                 <DialogContentText>
                     To edit to your biography, please enter your information here.
                 </DialogContentText>
-                <TextareaAutosize 
-                                    aria-label="minimum height" 
-                                    minRows={6} 
-                                    className={classes.textArea}
-                                    value={edit}
-                                    onChange={(e) => {
-                                        if(e.target.value.length <= 300) {
-                                            setEdit(e.target.value);
-                                        }
-                                    }}
+                <TextField 
+                            aria-label="minimum height" 
+                            multiline
+                            variant="outlined"
+                            minRows={6} 
+                            className={classes.textArea}
+                            value={edit}
+                            onChange={(e) => {
+                                if(e.target.value.length <= 300) {
+                                    setEdit(e.target.value);
+                                }
+                            }}
                 />
                 <div style={{float: 'right'}}>{edit.length} / 300</div>
                 </DialogContent>
